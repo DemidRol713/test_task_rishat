@@ -1,0 +1,10 @@
+asgiref @ file:///opt/conda/conda-bld/asgiref_1661287532135/work
+certifi @ file:///croot/certifi_1671487769961/work/certifi
+charset-normalizer==3.0.1
+Django @ file:///opt/conda/conda-bld/django_1661296381686/work
+idna==3.4
+psycopg2==2.9.5
+requests==2.28.2
+sqlparse @ file:///croot/sqlparse_1668793487206/work
+stripe==5.1.1
+urllib3==1.26.14
