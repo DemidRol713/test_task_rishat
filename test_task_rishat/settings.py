@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os.path
+import os
 from pathlib import Path
+from os import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,15 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$$v1-=b7es4in%gyds%)4g)a2)$kyc2jr(_krpw8h)2kgks^g@'
-SECRET_KEY_STRIPE = 'sk_test_51MZatQHnWIQFVLjli1NUn07V6V3OKB2okI55X8VF2758wLFHF11ZkHO4Kz3aQ5ml8n69fce1Gs2msSSG3ZV5gEX900q4bDQ0uV'
-PUBLIC_KEY_STRIPE = 'pk_test_51MZatQHnWIQFVLjlwIUxIsoqvTx4500qeNDb06FbliYWXHetqcnpqz7JyHOXDjzGObdBuo41pLuzvBUu9XOMWjI800HHBaBBfw'
-DOMAIN = "http://127.0.0.1:8000"
+SECRET_KEY = environ.get("SECRET_KEY")
+SECRET_KEY_STRIPE = environ.get("SECRET_KEY_STRIPE")
+PUBLIC_KEY_STRIPE = environ.get("PUBLIC_KEY_STRIPE")
+DOMAIN = environ.get("DOMAIN")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = environ.get("ALLOWED_HOSTS").split(' ')
 
 
 # Application definition
@@ -77,28 +78,28 @@ WSGI_APPLICATION = 'test_task_rishat.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'test_task_rishat',
+#         'USER': 'demidrol',
+#         'PASSWORD': '1q2w3e',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test_task_rishat',
-        'USER': 'demidrol',
-        'PASSWORD': '1q2w3e',
-        'HOST': 'localhost',
-        'PORT': '',
+        "NAME": environ.get("SQL_NAME",),
+        "USER": environ.get("SQL_USER", "demidrol"),
+        "PASSWORD": environ.get("SQL_PASSWORD", "1q2w3e"),
+        "HOST": environ.get("SQL_HOST", "localhost"),
+        "PORT": environ.get("SQL_PORT", "5432"),
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('NAME'),
-#         'USER': os.getenv('USER'),
-#         'PASSWORD': os.getenv('PASSWORD'),
-#         'HOST': os.getenv('HOST'),
-#         'PORT': os.getenv('PORT'),
-#     }
-# }
 
 
 # Password validation
