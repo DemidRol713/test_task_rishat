@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'test_task_rishat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        "NAME": environ.get("SQL_NAME",),
+        "NAME": environ.get("SQL_NAME", 'test_task_rishat'),
         "USER": environ.get("SQL_USER", "demidrol"),
         "PASSWORD": environ.get("SQL_PASSWORD", "1q2w3e"),
-        "HOST": environ.get("SQL_HOST", "localhost"),
+        "HOST": environ.get("SQL_HOST", "dpg-cfpnvdh4rebfdauj7lgg-a"),
         "PORT": environ.get("SQL_PORT", "5432"),
     }
 }
