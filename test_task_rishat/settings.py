@@ -29,7 +29,7 @@ DOMAIN = environ.get("DOMAIN")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = environ.get("ALLOWED_HOSTS").split(' ')
+ALLOWED_HOSTS = ['shatil1w.beget.tech']
 
 
 # Application definition
